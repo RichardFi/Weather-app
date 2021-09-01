@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
-const WeatherCard = ({ weather }) => {
+const WeatherCard = props => {
+  const { weather } = props
   return (
     <Container>
       <City>{weather.timezone.split('/')[1]}</City>
@@ -14,27 +15,27 @@ const WeatherCard = ({ weather }) => {
         <WeatherDetails>
           <div>
             <div>High</div>
-            <div className="data">{weather.daily[0].temp.max}°</div>
+            <div className='data'>{weather.daily[0].temp.max}°</div>
           </div>
           <div>
             <div>Low</div>
-            <div className="data">{weather.daily[0].temp.min}°</div>
+            <div className='data'>{weather.daily[0].temp.min}°</div>
           </div>
           <div>
             <div>Precipitation</div>
-            <div className="data">{weather.daily[0].pop * 100}%</div>
+            <div className='data'>{weather.daily[0].pop * 100}%</div>
           </div>
           <div>
             <div>Humidity</div>
-            <div className="data">{weather.daily[0].humidity}%</div>
+            <div className='data'>{weather.daily[0].humidity}%</div>
           </div>
           <div>
             <div>UV</div>
-            <div className="data">{weather.daily[0].uvi}</div>
+            <div className='data'>{weather.daily[0].uvi}</div>
           </div>
           <div>
             <div>Wind</div>
-            <div className="data">{weather.daily[0].wind_speed}mph</div>
+            <div className='data'>{weather.daily[0].wind_speed}mph</div>
           </div>
         </WeatherDetails>
       </Information>
@@ -80,8 +81,8 @@ const WeatherDetails = styled.div`
       margin: 10px 0;
       font-size: 0.9rem;
     }
-    .data{
-        font-size: 1.2rem;
+    .data {
+      font-size: 1.2rem;
     }
   }
 `

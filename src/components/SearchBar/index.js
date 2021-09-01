@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
-const SearchBar = ({ onClickCity }) => {
+const SearchBar = props => {
+  const { onClickCity } = props
   return (
     <Container>
       <button onClick={() => onClickCity('-27.4679', '153.0281')}>
@@ -26,11 +27,11 @@ const Container = styled.div`
     margin-right: 10px;
     background-color: rgba(255, 255, 255, 0.2);
     padding: 6px 8px;
-    color:#ffffff;
+    color: #ffffff;
     border-radius: 3px;
     border: none;
-    :hover{
-        opacity: .8;
+    :hover {
+      opacity: 0.8;
     }
   }
 `

@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 
-const WeatherForcast = ({ weather }) => {
-  console.log(weather)
+const WeatherForcast = props => {
+  const { weather } = props
   return (
     <Container>
       {weather.daily.map((weatherDaily, index) => {
         if (index === 0) {
-          return ('')
+          return ''
         }
         return (
           <WeatherCard>
