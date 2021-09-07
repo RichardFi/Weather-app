@@ -24,8 +24,6 @@ const SearchBar = props => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    console.log(city)
-
     weatherSearch(city)
   }
   const handleFormOnChangeUsername = e => {
@@ -61,10 +59,20 @@ const Container = styled.div`
     padding: 6px 8px;
     color: #ffffff;
     border-radius: 3px;
+    height: 30px;
     border: none;
     :hover {
       opacity: 0.8;
     }
+  }
+  input {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    color: #ffffff;
+    margin-right: 10px;
+    height: 30px;
+    outline: none;
+    border: none;
   }
 `
 export default SearchBar

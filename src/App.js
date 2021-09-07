@@ -5,30 +5,31 @@ import WeatherForcast from './components/WeatherForcast'
 import SearchBar from './components/SearchBar'
 import loadingIcon from './images/loading.svg'
 import Axios from 'axios'
+import cities from './city.list.json'
+
 function App () {
   const [weather, setWeather] = useState(false)
+  const australianCities = cities.filter(city => city.country === 'AU')
 
   const fetchWeatherData = async api => {
+    setWeather(false)
+
     const { data } = await Axios.get(api)
     setWeather(data)
   }
-  const fetchCityData = async api => {
-    const { data } = await Axios.get(api)
-    console.log(data)
-  }
+
   useEffect(() => {
     const api = `${process.env.REACT_APP_OPEN_WEATHER_API_URL}onecall?lat=-27.4679&lon=153.0281&exclude=hourly,minutely,alerts&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}&units=metric`
     fetchWeatherData(api)
   }, [])
 
-  /*   const onClickCity = (lat, lon) => {
-    const api = `${process.env.REACT_APP_OPEN_WEATHER_API_URL}onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,alerts&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}&units=metric`
-    fetchData(api)
-  } */
-
-  const weatherSearch = city => {
-    const api = `${process.env.REACT_APP_CITY_SEARCH_API_URL}?q=${city}&apikey=${process.env.REACT_APP_CITY_SEARCH_API_KEY}`
-    fetchCityData(api)
+  const weatherSearch = targetCity => {
+    const city = australianCities.find(city => city.name.toLowerCase() === targetCity.toLowerCase())
+    if(!city){
+      return alert('Please enter a valid city in Australia!')
+    }
+    const api = `${process.env.REACT_APP_OPEN_WEATHER_API_URL}onecall?lat=${city.coord.lat}&lon=${city.coord.lon}&exclude=hourly,minutely,alerts&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}&units=metric`
+    fetchWeatherData(api)
   }
   return (
     <Container>
