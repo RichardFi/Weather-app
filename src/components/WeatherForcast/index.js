@@ -9,7 +9,7 @@ const WeatherForcast = props => {
           return ''
         }
         return (
-          <WeatherCard>
+          <WeatherCard key={index}>
             <DayOfWeek>
               {
                 new Date((weatherDaily.dt + weather.timezone_offset) * 1000)

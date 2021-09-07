@@ -23,7 +23,9 @@ const WeatherCard = props => {
           </div>
           <div>
             <div>Precipitation</div>
-            <div className='data'>{weather.daily[0].pop * 100}%</div>
+            <div className='data'>
+              {Math.round(weather.daily[0].pop * 100)}%
+            </div>
           </div>
           <div>
             <div>Humidity</div>

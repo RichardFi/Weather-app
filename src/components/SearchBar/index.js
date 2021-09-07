@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-
-const SearchBar = props => {
+import { useState } from 'react'
+/* const SearchBar = props => {
   const { onClickCity } = props
   return (
     <Container>
@@ -13,6 +13,38 @@ const SearchBar = props => {
       <button onClick={() => onClickCity('-37.9712', '144.4913')}>
         Melbourne
       </button>
+    </Container>
+  )
+} */
+
+const SearchBar = props => {
+  const { weatherSearch } = props
+
+  const [city, setCity] = useState('')
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    console.log(city)
+
+    weatherSearch(city)
+  }
+  const handleFormOnChangeUsername = e => {
+    setCity(e.target.value)
+  }
+
+  return (
+    <Container>
+      <form onSubmit={handleSubmit}>
+        <input
+          type='text'
+          id='city'
+          name='city'
+          value={city}
+          onChange={handleFormOnChangeUsername}
+        ></input>
+
+        <button type='submit'>search</button>
+      </form>
     </Container>
   )
 }
