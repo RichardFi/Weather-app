@@ -13,7 +13,6 @@ function App () {
 
   const fetchWeatherData = async api => {
     setWeather(false)
-
     const { data } = await Axios.get(api)
     setWeather(data)
   }
@@ -24,8 +23,10 @@ function App () {
   }, [])
 
   const weatherSearch = targetCity => {
-    const city = australianCities.find(city => city.name.toLowerCase() === targetCity.toLowerCase())
-    if(!city){
+    const city = australianCities.find(
+      city => city.name.toLowerCase() === targetCity.toLowerCase()
+    )
+    if (!city) {
       return alert('Please enter a valid city in Australia!')
     }
     const api = `${process.env.REACT_APP_OPEN_WEATHER_API_URL}onecall?lat=${city.coord.lat}&lon=${city.coord.lon}&exclude=hourly,minutely,alerts&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}&units=metric`
@@ -40,7 +41,7 @@ function App () {
           <WeatherForcast weather={weather} />
         </div>
       ) : (
-        <Loading></Loading>
+        <Loading />
       )}
     </Container>
   )
